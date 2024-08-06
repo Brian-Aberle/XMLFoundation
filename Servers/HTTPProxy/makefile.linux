@@ -1,0 +1,20 @@
+CC = g++
+CPPFLAGS = -w -O3 -c -D_INTEL -D___LINUX -D___LINUX64 -I../../Libraries/XMLFoundation/inc 
+
+TransactXML: \
+	clear \
+	HTTPProxy.o 
+	 
+	$(CC) \
+		-o HTTPProxy \
+		-L../../Libraries/XMLFoundation/Build \
+		HTTPProxy.o \
+		-lpthread -ldl -lXMLFoundation 
+
+SocketServer.o: ./HTTPProxy.cpp
+	$(CC) $(CPPFLAGS) ./HTTPProxy.cpp -o ./HTTPProxy.o
+
+
+clear:
+	clear
+

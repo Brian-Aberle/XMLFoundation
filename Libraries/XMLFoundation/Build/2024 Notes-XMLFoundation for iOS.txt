@@ -1,0 +1,21 @@
+In July 2024, The entire code contains what it needs to stand by itself without OpenSSL.
+That is a large build change from the 2014 notes.  The new HMAC Proxy authentication in ServerCore.cpp is still being put together.
+
+
+The XMLFoundation defined precompiled build branch was changed to ___IOS, to be hopefully unique C++ preprocessor directive when XMLFoundation is merged into other builds. 
+
+It is expected to port to the new XCode without too much trouble - however i havent done it yet.
+
+I didnt have a Mac handy. ANyone who is working in tyhe cloud:
+
+http://xcodeclub.com offers a development environment in the cloud.  
+There is also https://checkout.macincloud.com
+
+Sharew with me a login and I can help you if you need the some help before i have updated and tested everything under the most recent XCode exvironment
+
+
+
+
+
+
+

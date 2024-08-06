@@ -1,0 +1,239 @@
+﻿@page "/ServerCore"
+<p>
+    <label style="">First Select checkbox services - A SwitchBoard is a path at the HTTP server so HTTP must be enabled for SwitchBoard to work.</label>
+</p>
+<p>
+    <label>
+        1. Select Services:
+        <input type="checkbox" name="HTTP Server" @onchange="CheckChangedHTTP" />
+        HTTP Server     
+    </label>
+    <label>
+        <input type="checkbox" name="Switchboard Server" @onchange="CheckChangedSB" />
+        Switchboard Server
+    </label>
+    <label>
+        <input type="checkbox" name="HTTP Proxy" @onchange="CheckChangedHTTPP" />
+        HTTP Proxy
+    </label>
+    <label style="">-------------></label>
+    <label style="">@strLastError</label>
+</p>
+<p>
+    <button class="btn btn-primary" @onclick="BtnSetWholeConfig">2. SetServerConfigurationFromInputBelow</button>
+    <label style="">-------------------------->Below, Scroll to the bottom for most recent activity</label>
+</p>
+<p>
+    <textarea id="appconfig" name="appconfig" style="width: 30%;" rows="15" tabindex="30">@strAppConfig</textarea>
+    <textarea id="info" name="info" style="width: 40%;" rows="15" tabindex="30">@strInfo</textarea>
+</p>
+<p>
+    <label>[Section]</label>
+    <input id="Section" maxlength="33" required="required" size="22" @bind="@sSection" />
+    <label>Entry=</label>
+    <input id="Entry" maxlength="33" required="required" size="22" @bind="@sEntry" />
+    <button class="btn btn-primary" @onclick="BtnGetConfigEntry">GetValue</button>
+    <label>Value</label>
+    <input id="Value" maxlength="33" size="22" @bind="@sValue" />
+    <button class="btn btn-primary" @onclick="BtnSetConfigEntry">SetValue</button>
+</p>
+<p>
+    <button class="btn btn-primary" @onclick="BtnStartServer">3. Start Server</button>
+    <button class="btn btn-primary" @onclick="BtnShowPorts">4. Show Ports</button>
+    <button class="btn btn-primary" @onclick="BtnShowConnections">5. Show Active Connections</button>
+
+    <button class="btn btn-primary" @onclick="BtnStopServer">6. Stop Server</button>
+</p>
+
+
+@code {
+    public string sSection = "";
+    public string sEntry = "";
+    public string sValue = "";
+
+    public string strLastError = "";
+    private string strAppConfig = "";
+    private string strInfo = "";
+    private bool IsHTTPServer;
+    private bool IsHTTPProxy;
+    private bool IsSwitchBoard;
+
+    private void ChangeCfg()
+    {
+        strAppConfig = "";
+        if (IsHTTPServer)
+            strAppConfig += strConfigHTTPServer;
+        if(IsSwitchBoard)
+            strAppConfig += strConfigSwitchboard;
+        if (IsHTTPProxy)
+            strAppConfig += strConfigHTTPProxy;
+
+        strAppConfig += strConfigSystemTrace;
+    }
+    private void CheckChangedHTTPP()
+    {
+        IsHTTPProxy = !IsHTTPProxy;
+        ChangeCfg();
+    }
+    private void CheckChangedSB()
+    {
+        IsSwitchBoard = !IsSwitchBoard;
+        ChangeCfg();
+    }
+    private void CheckChangedHTTP()
+    {
+        IsHTTPServer = !IsHTTPServer;
+        ChangeCfg();
+    }
+    private string strConfigSystemTrace = "[System]\r\nPool=10\r\nProxyPool=5\r\nLogFile=C:\\Software\\HTTPProxyLog.txt\r\n\r\n[Trace]\r\nEnable=yes\r\nHTTPProxyTrace=0\r\nHTTPProxyReturnTrace=0\r\nConnectTrace=1\r\n\r\n";
+    private string strConfigHTTPServer  = "[HTTP]\r\nEnable=yes\r\nIndex=Index.html\r\nHome=c:\\xmlf-wwwRoot\r\nPort=88\r\n\r\n";
+    private string strConfigHTTPProxy   = "[HTTPProxy]\r\nEnable=yes\r\nHTTPProxyAgent=HTTPProxy\r\nRequireAuth=0\r\nPort=10888\r\nLogEnabled=0\r\nLogFileName=\r\nTimeout=300\r\n\r\n";
+    private string strConfigSwitchboard = "[SwitchBoardServer]\r\nEnable=1\r\nName=/PublicPath/\r\n\r\n";
+
+    // Internally XMLFoundation GProfile obtains booleans so that [yes,on,1,or true] returns a positive, for settings such as Enable.
+    // you can set certains features, preconfigured but not enabled.
+
+    //"[System]\r\n"
+    //"Pool=200\r\n"
+    //"ProxyPool=200\r\n"
+    //"LogFile=C:\\HTTPProxyLog.txt\r\n"
+    //
+
+
+
+
+    //"[Trace]\r\n"
+    //"Enable=yes\r\n"
+    //"HTTPProxyTrace=0\r\n"
+    //"HTTPProxyReturnTrace=0\r\n"
+    //"ConnectTrace=1\r\n"
+    //
+    //"[HTTP]\r\n"
+    //"Enable=yes\r\n"
+    //"Index=Index.html\r\n" // you should create your own custom Index.html
+    //"Home=%s\r\n"          // you should change this folder to where you want the WWW Root Directory for the server on your disk.
+    //"Port=88\r\n";        // Since Port 80 is often in use, start this HTTP server on port 88 by default - feel free to change it to 80 if that works for you
+    //
+    //[SwitchBoardServer]
+    //Enable=1                      // The Switchboard allows two client connections to meet at a virtual path in the HTTP server which must
+    //Name=/PublicPath/             // be enabled for the switchboard to be active.  Any protocol can be proxied over HTTP at a switchboard.
+    //or
+    //Name=/MySwitchServerPath/"
+
+    // 2024 note:  The HTTP proxy uses old Encryption Algorithms within an HMAC authentication that uses OpenSSL.
+    // XMLFoundation 2024 contains SHA512 and will also completely contain the HMAC algorithm to break the dependancy on OpenSSL.
+    // This implementation of the HTTP Proxy probably wont authenticate with some software that uses newer algorithms until that is complete.
+    // The HTTP Proxy code in ServerCore.cpp is under re-construction in 2024 to support the most recent algorithms.  Look for the next release. 
+    // 
+    // "[HTTPProxy]\r\n"
+    // "Enable=yes\r\n"
+    // "HTTPProxyAgent=HTTPProxy\r\n"
+    // "RequireAuth=0\r\n"
+    // "Port=10888\r\n"				// defaults to port 10888 - feel free to change it.
+    // "LogEnabled=0\r\n"
+    // "LogFileName=\r\n"			// if LogEnabled is true set LogFileName=c:\users\somewhere\writable\MyLogFile.txt
+    // "Timeout=300\r\n";
+
+    /*
+    [HTTPProxy]
+    Enable=1
+    Port=8080
+    RequireAuth=1
+    BlockedDomains=
+    RestrictIPs=1
+    RestrictBeginMatch=10.0.;192.168.       // block all connections that did not originate on the subnets specified.
+    Only443or80=1                           // only provide proxy service for ports 443 and 80
+    NegotiateBasic=1
+    EnableOutboundConnectCache=0
+    NegotiateNTLMv2=1
+    LogHTTPTxnFiles=0
+    LogFileName=C:\Users\theboss\Desktop\HTTPProxyLog.txt
+    */
+
+    // Also currently supports - TCP Application Tunnels and Proxies
+    // this allows you to proxy for Telnet, VNC, or any protocol
+    // you can setup many instances.  The client application such as a Telnet Client or VNC client or [any TCP client application]
+    // will connect to 127.0.0.1 into a tunnel that can be encrypted, it will exit the tunnel
+    // and connect to the server side application from localhost and forward the data as if the client
+    // application was running on local host when it is not. 
+
+    // ServerCore.cpp will loop through the [Tunnel1]...[TunnelN] and [Proxy1]..[ProxyN] sections in the config file
+    // and stop at the first break in numerical ascending order of N.  An entry can set Enable=false to skip an entry which
+    // remains in the ascending count of N sections to disable or enable individually within a configuration chain. 
+    // Each section has a local listen port and remote listen port as well as the remote IP address.
+
+    // loop through the [Tunnel1]...[TunnelN] and [Proxy1]..[ProxyN] sections in the config file
+    //"LocalPort"
+    //"Enable"
+    //"RemoteMachine"
+    //"RemotePort"
+    //"InstanceLimit"
+    //"Timeout"
+    //"LogFile"
+    //"LogEnabled"
+
+
+    protected override void OnInitialized()    {   }
+    public void Dispose()   {   }
+
+    private void BtnSetWholeConfig()
+    {
+        GGlobals.XMLApp.SetAllCoreValues(strAppConfig);
+        strLastError = "OK. Configuration is set in ServerCore.cpp";
+        BtnGetWholeConfig(); // update the user interface
+    }
+    private void BtnGetWholeConfig()
+    {
+        bool bAsXML = false;
+        strInfo = GGlobals.XMLApp.GetAllCoreValues(bAsXML);
+    }
+    private void BtnStartServer()
+    {
+        string sResults = "";
+        GGlobals.XMLApp.CoreCommand("start",ref sResults);
+        strLastError = GGlobals.XMLApp.GetLastServerError();
+        strLastError += "- OK. Now check [System] LogFile= :";
+        strLastError += GGlobals.XMLApp.GetCoreValue("System","Logfile");
+        BtnShowLog();
+    }
+
+    private void BtnShowConnections()
+    {
+        strInfo = "";
+        string sResults = "";
+        GGlobals.XMLApp.CoreCommand("active", ref strInfo);
+        strInfo = (sResults.Length > 0) ? sResults : "<no active connections>";
+    }
+    private void BtnShowPorts()
+    {
+        string sResults = "";
+        strInfo = "";
+        GGlobals.XMLApp.CoreCommand("ports", ref sResults);
+        strInfo = sResults;
+        //        BtnShowLog();
+    }
+    private void BtnShowLog()
+    {
+        strInfo = GGlobals.XMLApp.GetLogFileData();
+        // should scroll to the bottom
+    }
+    private void BtnStopServer()
+    {
+        strInfo = "Stopping.....";
+        string sResults = "";
+        GGlobals.XMLApp.CoreCommand("stop",ref sResults);
+        BtnShowLog();
+    }
+
+    private void BtnGetConfigEntry()
+    {
+        sValue = GGlobals.XMLApp.GetCoreValue(sSection, sEntry);
+    }
+    private void BtnSetConfigEntry()
+    {
+        GGlobals.XMLApp.SetCoreValue(sSection, sEntry, sValue);
+        strLastError = "OK. New Configuration value is set in ServerCore.cpp";
+        BtnGetWholeConfig(); // update the user interface
+    }
+}
+

@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMauiApp", "BlazorMauiApp\BlazorMauiApp.csproj", "{05B16361-83A3-483B-A7A3-6E3FBDDFED35}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMLFoundationDLLWindows", "XMLFoundationDLLWindows\XMLFoundationDLLWindows.vcxproj", "{B89DF7AD-D24A-4960-961C-4CEC455F8005}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMLFoundationDLLSharedCPP", "XMLFoundationDLLSharedCPP\XMLFoundationDLLSharedCPP.vcxitems", "{17847019-9BA1-4CC0-8916-7E75985D2635}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XMLFoundationAppWindows", "XMLFoundationApp\XMLFoundationAppWindows.csproj", "{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XMLFoundationAppShared", "XMLFoundationAppShared\XMLFoundationAppShared.shproj", "{CEA0F537-B07B-43A8-92D0-FB88487DB0B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|x64.Build.0 = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|x86.Build.0 = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|x64.ActiveCfg = Release|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|x64.Build.0 = Release|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|x64.Deploy.0 = Release|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|x86.ActiveCfg = Release|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|x86.Build.0 = Release|Any CPU
+		{05B16361-83A3-483B-A7A3-6E3FBDDFED35}.Release|x86.Deploy.0 = Release|Any CPU
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Debug|Any CPU.Build.0 = Debug|x64
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Debug|x64.ActiveCfg = Debug|x64
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Debug|x64.Build.0 = Debug|x64
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Debug|x86.ActiveCfg = Debug|Win32
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Debug|x86.Build.0 = Debug|Win32
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Release|Any CPU.ActiveCfg = Release|x64
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Release|Any CPU.Build.0 = Release|x64
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Release|x64.ActiveCfg = Release|x64
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Release|x64.Build.0 = Release|x64
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Release|x86.ActiveCfg = Release|Win32
+		{B89DF7AD-D24A-4960-961C-4CEC455F8005}.Release|x86.Build.0 = Release|Win32
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Debug|x64.Build.0 = Debug|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Debug|x86.Build.0 = Debug|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Release|x64.ActiveCfg = Release|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Release|x64.Build.0 = Release|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Release|x86.ActiveCfg = Release|Any CPU
+		{91F5EE10-E709-4FE8-AD99-E6B0B2E4BF2A}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {827BBFDC-BD12-4819-8D91-0DA5B1B5BDF1}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		XMLFoundationDLLSharedCPP\XMLFoundationDLLSharedCPP.vcxitems*{17847019-9ba1-4cc0-8916-7e75985d2635}*SharedItemsImports = 9
+		XMLFoundationAppShared\XMLFoundationAppShared.projitems*{91f5ee10-e709-4fe8-ad99-e6b0b2e4bf2a}*SharedItemsImports = 5
+		XMLFoundationDLLSharedCPP\XMLFoundationDLLSharedCPP.vcxitems*{b89df7ad-d24a-4960-961c-4cec455f8005}*SharedItemsImports = 4
+		XMLFoundationAppShared\XMLFoundationAppShared.projitems*{cea0f537-b07b-43a8-92d0-fb88487db0b7}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

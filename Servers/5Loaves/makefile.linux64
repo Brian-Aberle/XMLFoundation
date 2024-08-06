@@ -1,0 +1,21 @@
+CC = g++
+CPPFLAGS = -w -O3 -c -D_INTEL -D___LINUX -D___LINUX64 -I../../Libraries/XMLFoundation/inc 
+COPY = cp
+
+TransactXML: \
+	clear \
+	Console.o 
+	 
+	$(CC) \
+		-o 5Loaves \
+		-L../../Libraries/XMLFoundation/Build \
+		Console.o \
+		-lpthread -ldl -lXMLFoundation 
+
+SocketServer.o: ./Console.cpp
+	$(CC) $(CPPFLAGS) ./Console.cpp -o ./Console.o
+
+
+clear:
+	clear
+

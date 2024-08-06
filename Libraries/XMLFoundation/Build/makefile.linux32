@@ -1,0 +1,256 @@
+#select a compiler
+#CC = /KaiCpp/KCC_BASE/bin/KCC
+CC = g++
+
+CPPFLAGS = -c -O3 -w -D___LINUX -D_INTEL
+INCDIR = -I../inc
+ 
+XMLFoundation: \
+	clear \
+	GSocketHelpers.o \
+	GArray.o \
+	GBTree.o \
+	GException.o \
+	GHash.o \
+	GList.o \
+	GProfile.o \
+	GStack.o \
+	GString.o \
+	SHA512.o \
+	hmac_sha256.o \
+	GStringList.o \
+	GDirectory.o \
+	GProcess.o \
+	GPerformanceTimer.o \
+	AttributeList.o \
+	CacheManager.o \
+	FactoryManager.o \
+	FrameworkAuditLog.o \
+	MemberDescriptor.o \
+	FileDataSource.o \
+	ObjQueryParameter.o \
+	ProcedureCall.o \
+	Schema.o \
+	SocketHTTPDataSource.o \
+	StackFrameCheck.o \
+	xmlAttribute.o \
+	xmlDataSource.o \
+	xmlElement.o \
+	xmlElementTree.o \
+	XMLException.o \
+	xmlLex.o \
+	xmlObject.o \
+	xmlObjectFactory.o \
+	XMLProcedureDescriptor.o \
+	TwoFish.o \
+	SwitchBoard.o \
+	SHA256.o \
+	SHA256xmlf.o \
+	Rijndael.o \
+	GZip.o \
+	Base64.o \
+	DynamicLibrary.o \
+	IntegrationBase.o \
+	IntegrationLanguages.o \
+	PluginBuilderLowLevelStatic.o \
+	GHTTPMultiPartPOST.o \
+
+	ar -r \
+	libXMLFoundation.a \
+	GSocketHelpers.o \
+	GArray.o \
+	GBTree.o \
+	GException.o \
+	GHash.o \
+	GList.o \
+	GProfile.o \
+	GStack.o \
+	GString.o \
+	SHA512.o \
+	hmac_sha256.o \
+	GStringList.o \
+	GDirectory.o \
+	GProcess.o \
+	GPerformanceTimer.o \
+	AttributeList.o \
+	CacheManager.o \
+	FactoryManager.o \
+	FrameworkAuditLog.o \
+	MemberDescriptor.o \
+	FileDataSource.o \
+	ObjQueryParameter.o \
+	ProcedureCall.o \
+	Schema.o \
+	SocketHTTPDataSource.o \
+	StackFrameCheck.o \
+	xmlAttribute.o \
+	xmlDataSource.o \
+	xmlElement.o \
+	xmlElementTree.o \
+	XMLException.o \
+	xmlLex.o \
+	xmlObject.o \
+	xmlObjectFactory.o \
+	XMLProcedureDescriptor.o \
+	TwoFish.o \
+	SwitchBoard.o \
+	SHA256.o \
+	SHA256xmlf.o \
+	Rijndael.o \
+	GZip.o \
+	Base64.o \
+	DynamicLibrary.o \
+	IntegrationBase.o \
+	IntegrationLanguages.o \
+	PluginBuilderLowLevelStatic.o \
+	GHTTPMultiPartPOST.o \
+
+
+GArray.o: ../src/Utils/GArray.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GArray.cpp
+	
+GBTree.o: ../src/Utils/GBTree.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GBTree.cpp
+	
+GException.o: ../src/Utils/GException.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GException.cpp
+	
+GHash.o: ../src/Utils/GHash.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GHash.cpp
+	
+GList.o: ../src/Utils/GList.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GList.cpp
+	
+GProfile.o: ../src/Utils/GProfile.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GProfile.cpp
+	
+GStack.o: ../src/Utils/GStack.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GStack.cpp
+	
+GString.o: ../src/Utils/GString.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GString.cpp
+	
+SHA512.o: ../src/Utils/SHA512.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/SHA512.cpp
+	
+hmac_sha256.o: ../src/Utils/hmac_sha256.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/hmac_sha256.cpp
+
+GStringList.o: ../src/Utils/GStringList.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GStringList.cpp
+
+GDirectory.o: ../src/Utils/GDirectory.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GDirectory.cpp
+
+GProcess.o: ../src/Utils/GProcess.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GProcess.cpp
+
+GPerformanceTimer.o: ../src/Utils/GPerformanceTimer.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GPerformanceTimer.cpp
+
+AttributeList.o: ../src/AttributeList.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/AttributeList.cpp
+	
+CacheManager.o: ../src/CacheManager.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/CacheManager.cpp
+	
+FactoryManager.o: ../src/FactoryManager.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/FactoryManager.cpp
+	
+FrameworkAuditLog.o: ../src/FrameworkAuditLog.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/FrameworkAuditLog.cpp
+	
+MemberDescriptor.o: ../src/MemberDescriptor.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/MemberDescriptor.cpp
+	
+FileDataSource.o: ../src/FileDataSource.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/FileDataSource.cpp
+	
+ObjQueryParameter.o: ../src/ObjQueryParameter.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/ObjQueryParameter.cpp
+	
+ProcedureCall.o: ../src/ProcedureCall.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/ProcedureCall.cpp
+	
+Schema.o: ../src/Schema.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Schema.cpp
+	
+SocketHTTPDataSource.o: ../src/SocketHTTPDataSource.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/SocketHTTPDataSource.cpp
+	
+StackFrameCheck.o: ../src/StackFrameCheck.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/StackFrameCheck.cpp
+	
+xmlAttribute.o: ../src/xmlAttribute.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlAttribute.cpp
+	
+xmlDataSource.o: ../src/xmlDataSource.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlDataSource.cpp
+	
+xmlElement.o: ../src/xmlElement.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlElement.cpp
+	
+xmlElementTree.o: ../src/xmlElementTree.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlElementTree.cpp
+	
+XMLException.o: ../src/XMLException.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/XMLException.cpp
+	
+xmlLex.o: ../src/xmlLex.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlLex.cpp
+	
+xmlObject.o: ../src/xmlObject.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlObject.cpp
+	
+xmlObjectFactory.o: ../src/xmlObjectFactory.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlObjectFactory.cpp
+	
+XMLProcedureDescriptor.o: ../src/XMLProcedureDescriptor.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/XMLProcedureDescriptor.cpp
+
+GSocketHelpers.o: ../src/Utils/GSocketHelpers.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GSocketHelpers.cpp
+
+TwoFish.o: ../src/Utils/TwoFish.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/TwoFish.cpp
+
+SwitchBoard.o: ../src/SwitchBoard.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/SwitchBoard.cpp
+
+SHA256.o: ../src/Utils/SHA256.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/SHA256.cpp
+
+SHA256xmlf.o: ../src/Utils/SHA256xmlf.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/SHA256xmlf.cpp
+
+Rijndael.o: ../src/Utils/Rijndael.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/Rijndael.cpp
+
+GZip.o: ../src/Utils/GZip.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GZip.cpp
+
+Base64.o: ../src/Utils/Base64.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/Base64.cpp
+
+DynamicLibrary.o: ../src/DynamicLibrary.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/DynamicLibrary.cpp
+
+IntegrationBase.o: ../src/IntegrationBase.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/IntegrationBase.cpp
+
+IntegrationLanguages.o: ../src/IntegrationLanguages.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/IntegrationLanguages.cpp
+
+PluginBuilderLowLevelStatic.o: ../src/Utils/PluginBuilderLowLevelStatic.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/PluginBuilderLowLevelStatic.cpp
+
+GHTTPMultiPartPOST.o: ../src/Utils/GHTTPMultiPartPOST.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GHTTPMultiPartPOST.cpp
+	
+
+
+clean:
+	- rm -f a.out *.o *.cgi core
+
+clear:
+	clear

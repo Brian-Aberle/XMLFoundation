@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{f1d2b8eb-2d60-4b83-bfaf-e85ce5452b8b}</ProjectGuid>
+    <RootNamespace>XMLFoundationWindowsPhone</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(WP80ToolSetPath)include;$(WindowsSDK_IncludePath);../../inc</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <IncludePath>$(WP80ToolSetPath)include;$(WindowsSDK_IncludePath);..\..\inc</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions);__WINPHONE</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>GlobalInclude.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>GlobalInclude.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PreprocessorDefinitions>__WINPHONE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>GlobalInclude.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalOptions>/ZW /EHsc</AdditionalOptions>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>GlobalInclude.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\inc\AbstractionsGeneric.h" />
+    <ClInclude Include="..\..\inc\AbstractionsMFC.h" />
+    <ClInclude Include="..\..\inc\AbstractionsRougeWave.h" />
+    <ClInclude Include="..\..\inc\AbstractionsSTD.h" />
+    <ClInclude Include="..\..\inc\AttributeList.h" />
+    <ClInclude Include="..\..\inc\Base64.h" />
+    <ClInclude Include="..\..\inc\BaseInterface.h" />
+    <ClInclude Include="..\..\inc\BOLRelation.h" />
+    <ClInclude Include="..\..\inc\BZip.h" />
+    <ClInclude Include="..\..\inc\CacheManager.h" />
+    <ClInclude Include="..\..\inc\DynamicLibrary.h" />
+    <ClInclude Include="..\..\inc\DynamicXMLObject.h" />
+    <ClInclude Include="..\..\inc\ExceptionHandler.h" />
+    <ClInclude Include="..\..\inc\FactoryManager.h" />
+    <ClInclude Include="..\..\inc\FileDataSource.h" />
+    <ClInclude Include="..\..\inc\FrameworkAuditLog.h" />
+    <ClInclude Include="..\..\inc\GArray.h" />
+    <ClInclude Include="..\..\inc\GBTree.h" />
+    <ClInclude Include="..\..\inc\GDirectory.h" />
+    <ClInclude Include="..\..\inc\GException.h" />
+    <ClInclude Include="..\..\inc\GHash.h" />
+    <ClInclude Include="..\..\inc\GHTTPMultiPartPOST.h" />
+    <ClInclude Include="..\..\inc\GList.h" />
+    <ClInclude Include="..\..\inc\GlobalInclude.h" />
+    <ClInclude Include="..\..\inc\GPerformanceTimer.h" />
+    <ClInclude Include="..\..\inc\GProfile.h" />
+    <ClInclude Include="..\..\inc\GSocketHelpers.h" />
+    <ClInclude Include="..\..\inc\GStack.h" />
+    <ClInclude Include="..\..\inc\GString.h" />
+    <ClInclude Include="..\..\inc\GStringList.h" />
+    <ClInclude Include="..\..\inc\GStringStack.h" />
+    <ClInclude Include="..\..\inc\GThread.h" />
+    <ClInclude Include="..\..\inc\GZip.h" />
+    <ClInclude Include="..\..\inc\IntegrationBase.h" />
+    <ClInclude Include="..\..\inc\IntegrationLanguages.h" />
+    <ClInclude Include="..\..\inc\InterfaceParser.h" />
+    <ClInclude Include="..\..\inc\ListAbstraction.h" />
+    <ClInclude Include="..\..\inc\LocalSocketHTTPDataSource.h" />
+    <ClInclude Include="..\..\inc\MemberDescriptor.h" />
+    <ClInclude Include="..\..\inc\MemberHandler.h" />
+    <ClInclude Include="..\..\inc\mhash_md5.h" />
+    <ClInclude Include="..\..\inc\ObjCacheQuery.h" />
+    <ClInclude Include="..\..\inc\ObjectDataHandler.h" />
+    <ClInclude Include="..\..\inc\ObjectPointer.h" />
+    <ClInclude Include="..\..\inc\ObjQuery.h" />
+    <ClInclude Include="..\..\inc\ObjQueryParameter.h" />
+    <ClInclude Include="..\..\inc\ObjResultSet.h" />
+    <ClInclude Include="..\..\inc\PasswordHelper.h" />
+    <ClInclude Include="..\..\inc\PluginBuilder.h" />
+    <ClInclude Include="..\..\inc\PluginBuilderLowLevelStatic.h" />
+    <ClInclude Include="..\..\inc\ProcedureCall.h" />
+    <ClInclude Include="..\..\inc\RelationshipWrapper.h" />
+    <ClInclude Include="..\..\inc\Schema.h" />
+    <ClInclude Include="..\..\inc\SHA256.h" />
+    <ClInclude Include="..\..\inc\SocketHTTPDataSource.h" />
+    <ClInclude Include="..\..\inc\StackFrameCheck.h" />
+    <ClInclude Include="..\..\inc\StringAbstraction.h" />
+    <ClInclude Include="..\..\inc\SwitchBoard.h" />
+    <ClInclude Include="..\..\inc\TwoFish.h" />
+    <ClInclude Include="..\..\inc\Win32\config.h" />
+    <ClInclude Include="..\..\inc\Win32\implement.h" />
+    <ClInclude Include="..\..\inc\Win32\need_errno.h" />
+    <ClInclude Include="..\..\inc\Win32\sched.h" />
+    <ClInclude Include="..\..\inc\Win32\semaphore.h" />
+    <ClInclude Include="..\..\inc\WinPhoneThreadEmulation.h" />
+    <ClInclude Include="..\..\inc\xmlAttribute.h" />
+    <ClInclude Include="..\..\inc\xmlDataSource.h" />
+    <ClInclude Include="..\..\inc\xmlDefines.h" />
+    <ClInclude Include="..\..\inc\xmlElement.h" />
+    <ClInclude Include="..\..\inc\xmlElementTree.h" />
+    <ClInclude Include="..\..\inc\xmlException.h" />
+    <ClInclude Include="..\..\inc\XMLFoundation.h" />
+    <ClInclude Include="..\..\inc\xmlLex.h" />
+    <ClInclude Include="..\..\inc\xmlObject.h" />
+    <ClInclude Include="..\..\inc\xmlObjectFactory.h" />
+    <ClInclude Include="..\..\inc\XMLObjectLoader.h" />
+    <ClInclude Include="..\..\inc\XMLProcedureDescriptor.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\AttributeList.cpp" />
+    <ClCompile Include="..\..\src\CacheManager.cpp" />
+    <ClCompile Include="..\..\src\DynamicLibrary.cpp" />
+    <ClCompile Include="..\..\src\FactoryManager.cpp" />
+    <ClCompile Include="..\..\src\FileDataSource.cpp" />
+    <ClCompile Include="..\..\src\FrameworkAuditLog.cpp" />
+    <ClCompile Include="..\..\src\IntegrationBase.cpp" />
+    <ClCompile Include="..\..\src\IntegrationLanguages.cpp" />
+    <ClCompile Include="..\..\src\InterfaceParser.cpp" />
+    <ClCompile Include="..\..\src\MemberDescriptor.cpp" />
+    <ClCompile Include="..\..\src\ObjQueryParameter.cpp" />
+    <ClCompile Include="..\..\src\ProcedureCall.cpp" />
+    <ClCompile Include="..\..\src\Schema.cpp" />
+    <ClCompile Include="..\..\src\SocketHTTPDataSource.cpp" />
+    <ClCompile Include="..\..\src\StackFrameCheck.cpp" />
+    <ClCompile Include="..\..\src\SwitchBoard.cpp" />
+    <ClCompile Include="..\..\src\Utils\Base64.cpp" />
+    <ClCompile Include="..\..\src\Utils\BZip.cpp" />
+    <ClCompile Include="..\..\src\Utils\ErrorsEnglish.cpp" />
+    <ClCompile Include="..\..\src\Utils\GArray.cpp" />
+    <ClCompile Include="..\..\src\Utils\GBTree.cpp" />
+    <ClCompile Include="..\..\src\Utils\GDirectory.cpp" />
+    <ClCompile Include="..\..\src\Utils\GException.cpp" />
+    <ClCompile Include="..\..\src\Utils\GHash.cpp" />
+    <ClCompile Include="..\..\src\Utils\GHTTPMultiPartPOST.cpp" />
+    <ClCompile Include="..\..\src\Utils\GList.cpp" />
+    <ClCompile Include="..\..\src\Utils\GMemory.cpp" />
+    <ClCompile Include="..\..\src\Utils\GPerformanceTimer.cpp" />
+    <ClCompile Include="..\..\src\Utils\GProfile.cpp" />
+    <ClCompile Include="..\..\src\Utils\GSocketHelpers.cpp" />
+    <ClCompile Include="..\..\src\Utils\GStack.cpp" />
+    <ClCompile Include="..\..\src\Utils\GString.cpp" />
+    <ClCompile Include="..\..\src\Utils\GString0.cpp" />
+    <ClCompile Include="..\..\src\Utils\GString32.cpp" />
+    <ClCompile Include="..\..\src\Utils\GStringList.cpp" />
+    <ClCompile Include="..\..\src\Utils\GThread.cpp" />
+    <ClCompile Include="..\..\src\Utils\GZip.cpp" />
+    <ClCompile Include="..\..\src\Utils\PluginBuilderLowLevelStatic.cpp" />
+    <ClCompile Include="..\..\src\Utils\SHA256.cpp" />
+    <ClCompile Include="..\..\src\Utils\TwoFish.cpp" />
+    <ClCompile Include="..\..\src\WinPhoneThreadEmulation.cpp" />
+    <ClCompile Include="..\..\src\xmlAttribute.cpp" />
+    <ClCompile Include="..\..\src\xmlDataSource.cpp" />
+    <ClCompile Include="..\..\src\xmlElement.cpp" />
+    <ClCompile Include="..\..\src\xmlElementTree.cpp" />
+    <ClCompile Include="..\..\src\XMLException.cpp" />
+    <ClCompile Include="..\..\src\xmlLex.cpp" />
+    <ClCompile Include="..\..\src\xmlObject.cpp" />
+    <ClCompile Include="..\..\src\xmlObjectFactory.cpp" />
+    <ClCompile Include="..\..\src\XMLProcedureDescriptor.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Windows">
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+    <Reference Include="platform.winmd">
+      <IsWinMDFile>true</IsWinMDFile>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsPhone\v$(TargetPlatformVersion)\Microsoft.Cpp.WindowsPhone.$(TargetPlatformVersion).targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

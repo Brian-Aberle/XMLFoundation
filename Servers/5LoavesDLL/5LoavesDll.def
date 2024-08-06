@@ -1,0 +1,10 @@
+LIBRARY   5LoavesDLL
+EXPORTS
+	SetConfigEntry		@1
+	SetConfigFile		@2
+	ServerStart			@3
+	ServerStop			@4
+	GetLast5LoavesError	@5
+
+
+ 

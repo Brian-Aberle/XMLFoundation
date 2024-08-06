@@ -1,0 +1,139 @@
+﻿@page "/"
+
+<label>Press the Buttons in order 1 thru 6 in order and look at the source code....enjoy:</label>
+<p>
+    <label>For OID:</label>
+    <input id="OID" maxlength="7" required="required" size="7" @bind="@OID" />
+    <button class="btn btn-primary" @onclick="BtnShowCustomer">Show</button>
+    <input id="CustName" maxlength="33" size="22" @bind="@NameVal" />
+    <input id="CustColor" maxlength="33" size="22" @bind="@ColorVal" />
+</p>
+
+<p>
+    <button class="btn btn-primary" @onclick="BtnFromXML">1.FromXML</button>
+    <label style="width:10%">From input below, or-></label>
+    <button class="btn btn-primary" @onclick="BtnXMLInsert">2.XMLInsert</button>
+    <button class="btn btn-primary" @onclick="BtnXMLUpdate">3.XMLUpdate</button>
+    <label>@strLastError</label>
+</p>
+
+<p>
+    <textarea id="xmlinput" name="xmlinput" style="width: 33%;" rows="12" tabindex="800" @bind="@strXMLInput"></textarea>
+    <textarea id="xmlresult" name="xmlresult" style="width: 33%;" rows="12" tabindex="800" @bind="@strXMLResults"></textarea>
+    <textarea id="appdata" name="appdata" style="width: 33%;" rows="12" tabindex="800" @bind="@strData"></textarea>
+</p>
+    <label>With an existing ID, you update the existing object.  With a new OID you will create a new Object instance.</label>
+<p>
+    <button class="btn btn-primary" @onclick="BtnCustomer">4.Insert or Update Customer</button>
+    <input id="CustID" maxlength="7" required="required" size="7" @bind="@ID" />
+    <input id="CustName" maxlength="7" size="7" @bind="@Name" />
+    <input id="CustColor" maxlength="14" size="7" @bind="@Color" />
+    <input id="StrList" maxlength="30" size="25" @bind="@strList" />
+</p>
+    <label>For the Address Object, the first 2 fields combined are defined as a unique key, the OID</label>
+<p>
+    <button class="btn btn-primary" @onclick="BtnAddress">5.Insert Or Update Address</button>
+    <input id="CustID" maxlength="7" required="required" size="7" @bind="@ID" />
+    <input id="Type" maxlength="5" size="5" @bind="@Type" />
+    <input id="Line1" maxlength="20" size="15" @bind="@Line1" />
+    <input id="Line2" maxlength="20" size="15" @bind="@Line2" />
+    <input id="City" maxlength="20" size="15" @bind="@City" />
+    <input id="State" maxlength="20" size="15" @bind="@State" />
+    <input id="Zip" maxlength="20" size="10" @bind="@Zip" />
+</p>
+<p>
+    <button class="btn btn-primary" @onclick="BtnExample">6.Contain or Inherit Example</button>
+</p>
+
+
+
+@code {
+    public string strLastError = "";
+    private string strXMLResults = "";
+    private string strXMLInput = "<ObjResultSet>\n\t<Customer Color=\"Ultraviolet\">\n\t\t<ID>777</ID>\n\t\t<ItemListName>\n\t\t\t<Item>first</Item>\n\t\t\t<Item>second</Item>\n\t\t\t<Item>3rd</Item>\n\t\t\t<Item>33rd</Item>\n\t\t</ItemListName>\n\t\t<String>Root</String>\n\t</Customer>\n</ObjResultSet>";
+    private string strData = "";
+    private string OID = "777";
+    private string NameVal = "";
+    private string ColorVal = "";
+
+    private ulong ID = 777;
+    private string Name = "Administrator";
+    private string Color = "Flourescent Purple";
+    private string strList = "1st|2nd|3rd|777th";
+    private string Line1 = "21 Park Place";
+    private string Line2 = "Boardwalk Building";
+    private string City = "UniverseCity";
+    private string State = "Stateless";
+    private string Zip = "90210";
+    private int Type = 1;
+
+    protected override void OnInitialized() { }
+    public void Dispose() { }
+
+    private void BtnDump()
+    {
+        strData = GGlobals.XMLApp.GetAppResultString(1);
+    }
+    private void BtnShowCustomer()
+    {
+        NameVal = GGlobals.XMLApp.GetMemberValue(OID, "MyCustomObject", "String", 1); // 1 is Element
+        ColorVal = GGlobals.XMLApp.GetMemberValue(OID, "MyCustomObject", "Color", 0); // 0 is Attribute
+        if (NameVal.Equals(""))
+            strLastError = "Error: OID" + OID + " Not found";
+    }
+    private void BtnCustomer()
+    {
+        // if ID is an existing OID then it will update
+        // if ID is not found then a new object instance for that OID is created
+        int nRet = GGlobals.XMLApp.InsertOrUpdateCustomer(ID, Name, Color, strList, Type);
+        strLastError = GGlobals.XMLApp.GetLastAppError();
+        OID = ID.ToString(); // causes BtnShowCustomer() to show the object we just Inserted or Updated
+        BtnShowCustomer();
+        BtnToXML();
+        BtnDump();
+    }
+    private void BtnAddress()
+    {
+        // NOTE : Address uses an OID made of 2 parts ID and Type so if an Address Object with the supplied ID and Type is found it will update
+        // Type is defined as "Address Type" being Work, Home, Mailing, or Billing as 1 or 2 or 3 or 4
+        int nRet = GGlobals.XMLApp.InsertOrUpdateAddress(ID, Line1, Line2, City, State, Zip, Type);
+        strLastError = GGlobals.XMLApp.GetLastAppError();
+        BtnToXML();
+        BtnDump();
+    }
+    private void BtnFromXML()
+    {
+        int nReturnVal = GGlobals.XMLApp.FromXML(strXMLInput);
+        strLastError = GGlobals.XMLApp.GetLastAppError();
+        BtnShowCustomer();
+        BtnToXML();
+        BtnDump();
+    }
+    private void BtnXMLInsert()
+    {
+        strXMLInput = "<ObjResultSet>\n\t<Customer Color=\"Deep Purple\">\n\t\t<ID>333</ID>\n\t\t<ItemListName>\n\t\t\t<Item>third</Item>\n\t\t</ItemListName>\n\t<String>Super User</String>\n\t</Customer>\n</ObjResultSet>";
+        // since we inserted a new customer with OID 333, setting the Blazor variable [ private string OID]
+        // causes the code in BtnShowCustomer() to fetch values from the object instance that we just created
+        OID = "333";
+        BtnFromXML();
+    }
+    private void BtnXMLUpdate()
+    {
+        strXMLInput = "<ObjResultSet>\n\t<Customer Color=\"Hypervivid purple\">\n\t\t<ID>777</ID>\n\t\t<ItemListName>\n\t\t\t<Item>one</Item>\n\t\t\t<Item>two</Item>\n\t\t\t<Item>3.33</Item>\n\t\t</ItemListName>\n\t\t<String>Admin</String>\n\t</Customer>\n</ObjResultSet>";
+        // since we are updating a customer with OID 777, setting the [private string OID] causes 
+        // the code in BtnShowCustomer() to fetch values from the object instance that we just updated
+        OID = "777";
+        BtnFromXML();
+    }
+    private void BtnToXML()
+    {
+        // puts all the xml, or the first [GGLobals._bufSize] bytes of the results into [strXMLResults]
+        ResultsetSafeHandle h = GGlobals.XMLApp.ToXML(ref strXMLResults);
+    }
+    private void BtnExample()
+    {
+        strData = GGlobals.XMLApp.GetAppResultString(777);
+    }
+
+}
+

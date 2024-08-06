@@ -1,0 +1,107 @@
+CCC = g++
+################################# notes for other perl distro core libraries
+#-I./nsPerl5.005_03_linux/lib/i686-linux/CORE
+#-L./nsPerl5.005_03_linux/lib/i686-linux/CORE \
+############################################################################
+####### On Ubuntu - get the latest cpan perl (or what was the latest in July 2024)
+####### configure, compile, then install - then you have the perl runtime libraries that you will need to link to
+# wget https://www.cpan.org/src/5.0/perl-5.38.0.tar.gz
+# tar - xzf perl-5.38.0.tar.gz
+# cd perl-5.38.0
+# ./Configure -des -Dprefix=/usr/local
+# manually edit config.sh and add -fPIC to ccflags
+# make
+# sudo make install
+
+# ls *.a 
+# this will list the libperl.a that you must link to from this makefile
+# ls *.h
+# this will list the include files to use for the perl runtime you just built
+
+
+############################################################################
+
+#######
+# 
+# You will need to set the folder paths for yourself in this make file 
+# depending on on wich perl runtime you use and where you have it.  
+# It has been tested with several perl Runtimes
+# also be sure to get your load library path correctly configured for your runtime  example:
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/user/your-perl-runtime-so-files
+
+
+CPPFLAGS = -O3 -w -c -fPIC -D___LINUX -D___LINUX64
+INCDIR = -I../../Libraries/XMLFoundation/inc -I/home/user/perl-5.38.0
+COPY = cp
+
+PerlDriver: \
+	clear \
+	DriverPerl.o \
+	Base64.o \
+	TwoFish.o \
+	GBTree.o \
+	SHA256.o \
+	GException.o \
+	GDirectory.o \
+	GStringList.o \
+	GProfile.o \
+	GList.o \
+	GString.o \
+	InterfaceParser.o \
+	IntegrationPerl.o 
+	
+
+	$(CCC) -shared -o PerlDriver5.38.so \
+		-L/home/user/perl-5.38.0 \
+        DriverPerl.o Base64.o TwoFish.o GBTree.o SHA256.o GList.o GString.o \
+		GProfile.o GStringList.o GDirectory.o GException.o InterfaceParser.o IntegrationPerl.o\
+         -lm -ldl -lperl -lcrypt
+	  
+	$(COPY) PerlDriver5.38.so ../.
+
+
+DriverPerl.o: ./DriverPerl.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ./DriverPerl.cpp
+
+Base64.o: ../../Libraries/XMLFoundation/src/Utils/Base64.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/Base64.cpp
+
+TwoFish.o: ../../Libraries/XMLFoundation/src/Utils/TwoFish.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/TwoFish.cpp
+
+GBTree.o: ../../Libraries/XMLFoundation/src/Utils/GBTree.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/GBTree.cpp
+
+SHA256.o: ../../Libraries/XMLFoundation/src/Utils/SHA256.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/SHA256.cpp
+
+GList.o: ../../Libraries/XMLFoundation/src/Utils/GList.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/GList.cpp
+
+GString.o: ../../Libraries/XMLFoundation/src/Utils/GString.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/GString.cpp
+
+GStringList.o: ../../Libraries/XMLFoundation/src/Utils/GStringList.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/GStringList.cpp
+
+GProfile.o: ../../Libraries/XMLFoundation/src/Utils/GProfile.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/GProfile.cpp
+
+GDirectory.o: ../../Libraries/XMLFoundation/src/Utils/GDirectory.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/GDirectory.cpp
+
+GException.o: ../../Libraries/XMLFoundation/src/Utils/GException.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/Utils/GException.cpp
+
+InterfaceParser.o: ../../Libraries/XMLFoundation/src/InterfaceParser.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ../../Libraries/XMLFoundation/src/InterfaceParser.cpp
+
+IntegrationPerl.o: ./IntegrationPerl.cpp
+	$(CCC) $(CPPFLAGS) $(INCDIR) ./IntegrationPerl.cpp
+
+
+clean:
+	- rm -f a.out *.o *.cgi core
+
+clear:
+	clear

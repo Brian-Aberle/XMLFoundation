@@ -1,0 +1,214 @@
+# make sure your PATH is correctly configured to
+# contain your make, compiler, and ar.  For example:
+# PATH=/usr/sbin:/usr/bin:/usr/local/bin:/usr/ccs/bin
+
+# select a compiler
+# -----------------
+#CC = g++
+CC = /opt2/SUNWspro/bin/CC
+
+
+# ADD this to CPPFLAGS to link with Orbix or VisiBroker and use CC 5.2 or better
+# -mt -D_REENTRANT -xarch=v9 
+
+
+CPPFLAGS = -c -O3 -w -D__sun 
+INCDIR = -I../inc
+ 
+XMLFoundation: \
+	clear \
+	GArray.o \
+	GBTree.o \
+	GException.o \
+	GHash.o \
+	GList.o \
+	GProfile.o \
+	GStack.o \
+	GString.o \
+	GStringList.o \
+	GDirectory.o \
+	GPerformanceTimer.o \
+	AttributeList.o \
+	CacheManager.o \
+	FactoryManager.o \
+	FrameworkAuditLog.o \
+	MemberDescriptor.o \
+	FileDataSource.o \
+	ObjQueryParameter.o \
+	ProcedureCall.o \
+	Schema.o \
+	SocketHTTPDataSource.o \
+	StackFrameCheck.o \
+	xmlAttribute.o \
+	xmlDataSource.o \
+	xmlElement.o \
+	xmlElementTree.o \
+	XMLException.o \
+	xmlLex.o \
+	xmlObject.o \
+	xmlObjectFactory.o \
+	XMLProcedureDescriptor.o \
+	FileXferInterface.o \
+	TwoFish.o \
+	md5.o \
+	BZip.o \
+	Base64.o \
+
+
+	ar -r \
+	libXMLFoundation.a \
+	GArray.o \
+	GBTree.o \
+	GException.o \
+	GHash.o \
+	GList.o \
+	GProfile.o \
+	GStack.o \
+	GString.o \
+	GStringList.o \
+	GDirectory.o \
+	GPerformanceTimer.o \
+	AttributeList.o \
+	CacheManager.o \
+	FactoryManager.o \
+	FrameworkAuditLog.o \
+	MemberDescriptor.o \
+	FileDataSource.o \
+	ObjQueryParameter.o \
+	ProcedureCall.o \
+	Schema.o \
+	SocketHTTPDataSource.o \
+	StackFrameCheck.o \
+	xmlAttribute.o \
+	xmlDataSource.o \
+	xmlElement.o \
+	xmlElementTree.o \
+	XMLException.o \
+	xmlLex.o \
+	xmlObject.o \
+	xmlObjectFactory.o \
+	XMLProcedureDescriptor.o \
+	FileXferInterface.o \
+	TwoFish.o \
+	md5.o \
+	BZip.o \
+	Base64.o \
+
+
+
+GArray.o: ../src/Utils/GArray.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GArray.cpp
+	
+GBTree.o: ../src/Utils/GBTree.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GBTree.cpp
+	
+GException.o: ../src/Utils/GException.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GException.cpp
+	
+GHash.o: ../src/Utils/GHash.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GHash.cpp
+	
+GList.o: ../src/Utils/GList.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GList.cpp
+	
+GProfile.o: ../src/Utils/GProfile.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GProfile.cpp
+	
+GStack.o: ../src/Utils/GStack.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GStack.cpp
+	
+GString.o: ../src/Utils/GString.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GString.cpp
+	
+GStringList.o: ../src/Utils/GStringList.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GStringList.cpp
+	
+GDirectory.o: ../src/Utils/GDirectory.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GDirectory.cpp
+
+GPerformanceTimer.o: ../src/Utils/GPerformanceTimer.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/GPerformanceTimer.cpp
+
+AttributeList.o: ../src/AttributeList.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/AttributeList.cpp
+	
+CacheManager.o: ../src/CacheManager.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/CacheManager.cpp
+	
+FactoryManager.o: ../src/FactoryManager.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/FactoryManager.cpp
+	
+FrameworkAuditLog.o: ../src/FrameworkAuditLog.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/FrameworkAuditLog.cpp
+	
+MemberDescriptor.o: ../src/MemberDescriptor.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/MemberDescriptor.cpp
+	
+FileDataSource.o: ../src/FileDataSource.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/FileDataSource.cpp
+	
+ObjQueryParameter.o: ../src/ObjQueryParameter.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/ObjQueryParameter.cpp
+	
+ProcedureCall.o: ../src/ProcedureCall.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/ProcedureCall.cpp
+	
+Schema.o: ../src/Schema.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Schema.cpp
+	
+SocketHTTPDataSource.o: ../src/SocketHTTPDataSource.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/SocketHTTPDataSource.cpp
+	
+StackFrameCheck.o: ../src/StackFrameCheck.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/StackFrameCheck.cpp
+	
+xmlAttribute.o: ../src/xmlAttribute.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlAttribute.cpp
+	
+xmlDataSource.o: ../src/xmlDataSource.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlDataSource.cpp
+	
+xmlElement.o: ../src/xmlElement.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlElement.cpp
+	
+xmlElementTree.o: ../src/xmlElementTree.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlElementTree.cpp
+	
+XMLException.o: ../src/XMLException.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/XMLException.cpp
+	
+xmlLex.o: ../src/xmlLex.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlLex.cpp
+	
+xmlObject.o: ../src/xmlObject.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlObject.cpp
+	
+xmlObjectFactory.o: ../src/xmlObjectFactory.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/xmlObjectFactory.cpp
+	
+XMLProcedureDescriptor.o: ../src/XMLProcedureDescriptor.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/XMLProcedureDescriptor.cpp
+
+FileXferInterface.o: ../src/FileXferInterface.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/FileXferInterface.cpp
+
+TwoFish.o: ../src/Utils/TwoFish.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/TwoFish.cpp
+
+md5.o: ../src/Utils/md5.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/md5.cpp
+
+BZip.o: ../src/Utils/BZip.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/BZip.cpp
+
+Base64.o: ../src/Utils/Base64.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ../src/Utils/Base64.cpp
+
+
+
+
+clean:
+	- rm -f a.out *.o *.cgi core
+
+clear:
+	clear

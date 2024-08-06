@@ -1,0 +1,48 @@
+﻿@page "/customer"
+
+@if (customobjects == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in customobjects)
+            {
+                <tr>
+                    <td>@customer.ID</td>
+                    <td>@customer.Type</td>
+                    <td>@customer.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private CustomerObj[]? customobjects;
+
+    protected override async Task OnInitializedAsync()
+    {
+        customobjects = Enumerable.Range(1, 5).Select(index => new CustomerObj
+        {
+            ID = 777,
+            Description = "This page in an unfinished part of this example app"
+        }).ToArray();
+    }
+
+    private class CustomerObj
+    {
+        public int ID { get; set; }
+        public string? Description { get; set; }
+        public int Type => 222 + ID;
+    }
+}

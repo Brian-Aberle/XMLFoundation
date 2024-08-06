@@ -1,0 +1,23 @@
+CC = g++
+CPPFLAGS = -c -O3 -w -D___LINUX -D___LINUX64
+INCDIR = -I../../../Libraries/XMLFoundation/inc 
+
+IndexObjects: \
+	clear \
+	IndexObjects.o
+	 
+	$(CC) \
+		-o IndexObjects \
+		-L../../../Libraries/XMLFoundation/Build \
+		IndexObjects.o \
+		-lXMLFoundation -ldl
+
+
+IndexObjects.o: ./IndexObjects.cpp
+	$(CC) $(CPPFLAGS) $(INCDIR) ./IndexObjects.cpp -o ./IndexObjects.o
+
+clean: 	- rm -f a.out ./*.o *.cgi core   
+
+clear:
+	clear
+
