@@ -1,3 +1,0 @@
-﻿Build started at 6:01 PM...
-========== Build: 0 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========
-========== Build completed at 6:01 PM and took 00.225 seconds ==========
