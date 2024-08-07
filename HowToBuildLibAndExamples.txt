@@ -1,0 +1,200 @@
+
+UPDATED 2024 Build information
+
+
+This is the first ever release of the XMLFoundation that does not require OpenSSL for the Server projects.
+
+
+
+=========================================================================================================
+
+[ Windows - Microsoft Visual Studio Build]
+
+   open the visual studio workspace
+   
+----------->    DO NOT BUILD FOR "Mixed Platforms"  Select "x64" DEBUG then rebuild all     <---------------------------
+	
+	All the project also build for 32 bit targets as [Win32] except for the .NET-MAUI-Blazor example
+	which gives this error: NETSDK1032	The RuntimeIdentifier platform 'maccatalyst-arm64' and the PlatformTarget 'x64' must be compatible.
+	Im not sure why yet.
+
+
+	The XMLFoundationLibAndroid uses the CLang compiler and the CMake build system to target ARM and ARM64 processors for Android
+	ONLY those two build targets are defined for the project titled [XMLFoundationLibAndroid]
+
+
+	The visual studio source code indexing takes time to rebuild.  After the first rebuild-all it may still not be available.  
+	It could require closing and restarting Visual Studio or multiple builds - but eventually the source code index will be rebuilt
+	so that for example, in the .NETMauiRazor example typing GG will automatically prompt you to type GGlobals and  GGlobals. will list all of the methods
+
+
+
+=========================================================================================================
+
+=========================================================================================================
+
+[Android Studio]
+
+----ONLY [armeabi-v7a] and [arm64-v8a] targets are currently supported in Android Studio the build will fail for [x86] and [x86_64]
+
+Make the project twice, on the 2nd make you will see that the [armeabi-v7a] and [arm64-v8a] targets were successfully built already
+
+If an emulator for a [armeabi-v7a] device is running then the very simple example MyApp will launch.  
+
+The example itself does very little however all the feature sets of the XMLFoundation are supported and 
+there is quite a bit of commentation in the source code of the example that explains the application design and development direction
+
+The example program, "MyApp" is lacking only Java user interface development 
+the example program functionality underneath the interface is equal to the functionality of the Windows .NET-MAUI-Blazor example sharing the same source code.
+
+
+
+=========================================================================================================
+						The remainder of this README file is about
+
+						  Building XMLFoundation on Linux 
+
+=========================================================================================================
+
+
+----------------------------------------------------------
+Prerequisite is that you need to make sure you have the g++ compiler installed.
+Type the following command at a terminal window:
+
+sudo apt-get install g++
+
+or
+
+from the graphical shell  -"Applications" - "System Tools" - "Software" (under "Development"- "Development Tools") select "C++ Support for GCC"
+
+----------------------------------------------------------
+
+
+
+1st - Build the XMLFoundation library
+-----------------------------
+
+move to the [Libraries/XMLFoundation/Build] folder, then type:
+
+make -f makefile.linux64
+
+
+or 
+
+
+for a 32 bit build of the library:
+make -f makefile.linux32
+
+
+
+Note about the build flags used within makefiles:
+The build flag -D___LINUX should be included for any linux styled system, 32 bit or 64 bit
+Android originated from a fork of Linux therefore v8 Android builds will define ___ANDROID;___LINUX;___ARM64;
+64 bit Linux builds should include both build flags: ___LINUX and ___LINUX64
+All the .linux example makefiles assume 64 bit targets and define both: ___LINUX and ___LINUX64 unless the makefile is specifically named *.linux32
+
+
+
+Build XML library usage samples
+--------------------------------------------
+move to the [Examples/C++/StartHere0] folder then type:
+make -f makefile.linux
+./StartHere0
+
+(To make any sense of the output refer to the source code)
+
+
+
+move to the [Examples/C++/StartHere] folder then type:
+make -f makefile.linux
+./StartHere
+
+move to the [Examples/C++/ExObjsFromXML] folder then type:
+make -f makefile.linux
+./ObjectsFromXML
+
+move to the [Examples/C++/ExIndexObjects] folder then type:
+make -f makefile.linux
+./IndexObjects
+
+move to the [Examples/C++/ObjectCache] folder then type:
+make -f makefile.linux
+./ObjectCache
+
+move to the [Examples/C++/BigData] folder then type:
+make -f makefile.linux
+./BigData
+
+move to the [Examples/C++/ContainOrInherit] folder then type:
+make -f makefile.linux
+./ContainOrInherit
+
+move to the [Examples/C++/RareUseExamples] folder then type:
+make -f makefile.linux
+./RareUseExamples
+
+
+
+
+
+*****************************************************************
+Building Server and Server Framework examples on Linux
+make sure you have done the 1st step - Build the XMLFoundation library
+*****************************************************************
+
+
+move to the [Servers/CustomHTTPService] folder then type:
+make -f makefile.linux
+./CustomHTTPServiceConsole
+
+
+move to the [Servers/HTTPProxy] folder then type:
+make -f makefile.linux
+./HTTPProxy
+
+
+
+
+August 2024 NOTE: A known problem on Linux in the HTTPProxy in this version is a crash during ServerCore shutdown.  
+Its a new thing and it will be hunted down and fixed eventually however of all the places to dump core - 
+on shutdown is preferrable to many other places.  No server functionality is diminished due to this problem.
+It could be a race condition as the threadpools are destroyed causing the rather grotesque core dump due to "Stack Smashing".
+
+
+
+
+
+*********  The Language Drivers are an advanced - rarely used option - allowing you to invoke user configured code 
+*********  written in  Perl, Python or Java code from your application.  Most Server Applications do not need the drivers.
+-------------------------------------------------
+*********
+*********    2024 updated notes are found inside Drivers/Perl/makefile.linux   *****************
+*********        Building the Perl Language driver requires a few prerequisite steps explained in Drivers/Perl/makefile.linux
+
+move to the Drivers/Perl folder then type:
+make -f makefile.linux
+
+
+after you have created the Perl Language driver - copy the .so shared library to the path you have configured in 5Loaves.txt as [System] LanguageDrivers=/some/path/on/your/system
+
+
+move to the Servers/5Loaves folder then type                         
+make -f makefile.linux64
+cp 5LoavesUnix.txt ./5Loaves.txt
+
+Edit the Servers/5Loaves/5Loaves.txt file so the paths match your machine, then type:
+
+./5Loaves
+
+
+
+Sample Environment setup (only needed to load certain language drivers)
+LD_LIBRARY_PATH must point to all dependency .so shared libraries
+-------------------------------------------------
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lib/x86_64-linux-gnu
+from a browser view this URL
+http://127.0.0.1:8088/PagePerl
+
+
+
+
